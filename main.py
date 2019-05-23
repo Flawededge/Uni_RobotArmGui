@@ -1,3 +1,4 @@
+# pip install -r dependencies.txt
 import os
 os.system("pyuic5 GUI.ui > GUI.py")
 
