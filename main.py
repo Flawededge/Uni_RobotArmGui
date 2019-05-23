@@ -22,6 +22,12 @@ class MainPlotGui(Ui_Dialog):
         self.clear_image()
         self.disp_image(self.workingImage)
 
+        self.bQ.clicked.connect(self.make_line)
+
+    def make_line(self):
+        cv2.line(self.workingImage, (0, 0), (75, 75), (255, 0, 0), 2)
+        self.disp_image(self.workingImage)
+
     def clear_image(self):
         self.workingImage = np.zeros((150, 250, 3), np.uint8)  # Create the empty image (y, x)
         self.workingImage[:, 0:] = (255, 255, 255)  # Make the image white
@@ -34,7 +40,7 @@ class MainPlotGui(Ui_Dialog):
     def load_file(self):
         print("thingy 5")
 
-
+# Ignore this bit, setup code for the code
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     dialog = QtWidgets.QDialog(flags=(QtCore.Qt.WindowMaximizeButtonHint | QtCore.Qt.WindowMinimizeButtonHint |
