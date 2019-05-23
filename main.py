@@ -30,6 +30,9 @@ class MainPlotGui(Ui_Dialog):
                                          image.shape[1] * 3, QtGui.QImage.Format_RGB888))
         self.outImg.setPixmap(pix)
 
+    def load_file(self):
+        print("thingy")
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
