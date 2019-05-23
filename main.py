@@ -31,7 +31,7 @@ class MainPlotGui(Ui_Dialog):
         self.outImg.setPixmap(pix)
 
     def load_file(self):
-        print("thingy")
+        print("thingy 2")
 
 
 if __name__ == '__main__':
