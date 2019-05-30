@@ -7,11 +7,13 @@ from GUI import Ui_Dialog
 from PyQt5 import QtWidgets, QtCore, QtGui
 import numpy as np
 import cv2
+import serial
 
 
 class MainPlotGui(Ui_Dialog):
     # The class variables which are used to pass things around
     workingImage = None  # Stores the image shown in the top left
+    dataSend = serial.Serial('com4', 115200)
 
     def __init__(self, dialog):  # Initialization function
         # Set up the GUI
@@ -23,6 +25,37 @@ class MainPlotGui(Ui_Dialog):
         self.disp_image(self.workingImage)
 
         self.bQ.clicked.connect(self.make_line)
+        self.bE.clicked.connect(self.serialTransmit)
+        self.bGo.clicked.connect(self.serialText)
+
+    def serialText(self):
+        text = self.txtInput.copyAvailable()
+        self.txtCommands.appendPlainText(f"Received: {text}")
+        self.dataSend.write(text.encode())
+        read = self.dataSend.read()
+        t = 0
+        while t < 3000000:
+            t = t + 1
+            if t % 1000 == 0:
+                print(t)
+        # self.txtCommands.appendPlainText(f"Received: {read}")
+
+        self.txtCommands.appendPlainText(f"Received from text input: {read}")
+
+    def serialTransmit(self):
+        t = 0
+        snt = "t 100 123"
+        self.txtCommands.appendPlainText(f"Sent: {snt}")
+        # self.dataSend.flushInput()
+        self.dataSend.write(snt.encode())
+
+        read = self.dataSend.read(10)
+        # while l_sent <= len(snt):
+        while t < 3000000:
+            t = t + 1
+            if t % 100 == 0:
+                print(t)
+        self.txtCommands.appendPlainText(f"Received: {read}")
 
     def make_line(self):
         cv2.line(self.workingImage, (0, 0), (75, 75), (255, 0, 0), 2)
