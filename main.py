@@ -85,7 +85,9 @@ class MainPlotGui(Ui_Dialog):
                     self.serial_transmit("u 1")
                 else:
                     error = True
-
+            elif i[0] == 'a':
+                tmp = i.split(" ")
+                self.serial_transmit(f"t {tmp[0]} {tmp[1]}")
             elif i[0] == 't':
                 tmp = i.split(" ")
                 try:
@@ -105,13 +107,9 @@ class MainPlotGui(Ui_Dialog):
     def calculate_angle(self, x, y):
         L1 = 220
         L2 = 190
-        theta1 = math.atan2(y, x)
-        L = math.sqrt(x ** 2 + y ** 2)
-        theta1 += math.acos((L ** 2 + L1 ** 2 - L2 ** 2) / (2 * L1 * L2))
-
-        theta2 = math.acos((L2 ** 2 + L1 ** 2 - L ** 2) / (2 * L1 * L2))
-
-        return math.degrees(theta1), math.degrees(theta2)
+        Q2 = math.acos((x ** 2 + y ** 2 - L1 ** 2 - L2 ** 2) / (2 * L1 * L2))
+        Q1 = math.atan2(y, x) - math.atan((L2 * math.sin(L2)) / (L1 + L2 * math.cos(Q2)))
+        return math.degrees(Q1), math.degrees(Q2)
 
     def clear_image(self):
         self.workingImage = np.zeros((150, 250, 3), np.uint8)  # Create the empty image (y, x)

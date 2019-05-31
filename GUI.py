@@ -99,13 +99,15 @@ class Ui_Dialog(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.bStart = QtWidgets.QPushButton(self.WinControl)
+        self.bStart.setAutoDefault(False)
         self.bStart.setObjectName("bStart")
         self.horizontalLayout.addWidget(self.bStart)
         self.bLoad = QtWidgets.QPushButton(self.WinControl)
+        self.bLoad.setAutoDefault(False)
         self.bLoad.setObjectName("bLoad")
         self.horizontalLayout.addWidget(self.bLoad)
         self.bSave = QtWidgets.QPushButton(self.WinControl)
-        self.bSave.setAutoDefault(True)
+        self.bSave.setAutoDefault(False)
         self.bSave.setObjectName("bSave")
         self.horizontalLayout.addWidget(self.bSave)
         self.bGo = QtWidgets.QPushButton(self.WinControl)
@@ -252,16 +254,16 @@ class Ui_Dialog(object):
         self.label_10.setText(_translate("Dialog", "X:"))
         self.label_11.setText(_translate("Dialog", "  Y:"))
         self.WinControl.setTitle(_translate("Dialog", "Command Input"))
-        self.txtInput.setPlainText(_translate("Dialog", "u 0\n"
-"z\n"
+        self.txtInput.setPlainText(_translate("Dialog", "z\n"
+"u 0\n"
+"t -35 100\n"
 "u 1\n"
-"t 1 50\n"
-"t 70 50\n"
-"t 70 127\n"
-"t 147 127\n"
-"t 147 85\n"
-"t 207 85\n"
-"u 0"))
+"t -35 170\n"
+"t 42 170\n"
+"t 42 247\n"
+"t 0 247\n"
+"t 0 307\n"
+""))
         self.bStart.setText(_translate("Dialog", "Start Serial"))
         self.bLoad.setText(_translate("Dialog", "Load"))
         self.bSave.setText(_translate("Dialog", "Save"))

@@ -144,16 +144,16 @@
            </sizepolicy>
           </property>
           <property name="plainText">
-           <string>u 0
-z
+           <string>z
+u 0
+t -35 100
 u 1
-t 1 50
-t 70 50
-t 70 127
-t 147 127
-t 147 85
-t 207 85
-u 0</string>
+t -35 170
+t 42 170
+t 42 247
+t 0 247
+t 0 307
+</string>
           </property>
          </widget>
         </item>
@@ -164,12 +164,18 @@ u 0</string>
             <property name="text">
              <string>Start Serial</string>
             </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="bLoad">
             <property name="text">
              <string>Load</string>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -179,7 +185,7 @@ u 0</string>
              <string>Save</string>
             </property>
             <property name="autoDefault">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>
