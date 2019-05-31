@@ -26,28 +26,14 @@ class MainPlotGui(Ui_Dialog):
 
         self.bQ.clicked.connect(self.make_line)
         self.bE.clicked.connect(self.serialTransmit)
-        self.bGo.clicked.connect(self.serialText)
 
-    def serialText(self):
-        text = self.txtInput.copyAvailable()
-        self.txtCommands.appendPlainText(f"Received: {text}")
-        self.dataSend.write(text.encode())
-        read = self.dataSend.read()
+
+    def serialTransmit(self, input):
         t = 0
-        while t < 3000000:
-            t = t + 1
-            if t % 1000 == 0:
-                print(t)
-        # self.txtCommands.appendPlainText(f"Received: {read}")
-
-        self.txtCommands.appendPlainText(f"Received from text input: {read}")
-
-    def serialTransmit(self):
-        t = 0
-        snt = "t 100 123"
-        self.txtCommands.appendPlainText(f"Sent: {snt}")
+        # snt = "t 100 123"
+        self.txtCommands.appendPlainText(f"Sent: {input}")
         # self.dataSend.flushInput()
-        self.dataSend.write(snt.encode())
+        self.dataSend.write(input.encode())
 
         read = self.dataSend.read(10)
         # while l_sent <= len(snt):
