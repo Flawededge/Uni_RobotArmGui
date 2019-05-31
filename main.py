@@ -35,6 +35,7 @@ class MainPlotGui(Ui_Dialog):
         # self.dataSend.flushInput()
         self.dataSend.write(input.encode())
 
+
         read = self.dataSend.read(10)
         # while l_sent <= len(snt):
         while t < 3000000:
