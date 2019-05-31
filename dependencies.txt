@@ -3,3 +3,6 @@ opencv-python
 pandas
 pyinstaller
 pyserial
+sympy
+IPython
+plotly

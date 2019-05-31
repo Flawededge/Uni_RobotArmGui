@@ -98,6 +98,9 @@ class Ui_Dialog(object):
         self.verticalLayout_9.addWidget(self.txtInput)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+        self.bStart = QtWidgets.QPushButton(self.WinControl)
+        self.bStart.setObjectName("bStart")
+        self.horizontalLayout.addWidget(self.bStart)
         self.bLoad = QtWidgets.QPushButton(self.WinControl)
         self.bLoad.setObjectName("bLoad")
         self.horizontalLayout.addWidget(self.bLoad)
@@ -249,17 +252,17 @@ class Ui_Dialog(object):
         self.label_10.setText(_translate("Dialog", "X:"))
         self.label_11.setText(_translate("Dialog", "  Y:"))
         self.WinControl.setTitle(_translate("Dialog", "Command Input"))
-        self.txtInput.setPlainText(_translate("Dialog", "z\n"
-"u 0\n"
-"a 100 200\n"
-"t 90 90\n"
+        self.txtInput.setPlainText(_translate("Dialog", "u 0\n"
+"z\n"
 "u 1\n"
-"t 0 180\n"
-"u 0\n"
-"t 180 45\n"
-"u 1\n"
-"t 90 90\n"
+"t 1 50\n"
+"t 70 50\n"
+"t 70 127\n"
+"t 147 127\n"
+"t 147 85\n"
+"t 207 85\n"
 "u 0"))
+        self.bStart.setText(_translate("Dialog", "Start Serial"))
         self.bLoad.setText(_translate("Dialog", "Load"))
         self.bSave.setText(_translate("Dialog", "Save"))
         self.bGo.setText(_translate("Dialog", "Go!"))
@@ -277,15 +280,7 @@ class Ui_Dialog(object):
         self.bQ.setText(_translate("Dialog", "Q"))
         self.label_4.setText(_translate("Dialog", "Manipulator Down"))
         self.bE.setText(_translate("Dialog", "E"))
-        self.txtCommands.setPlainText(_translate("Dialog", "Commands:\n"
-"T [x] [y] {mode} - Translate by [x][y]\n"
-"A [x] [y] {mode} - Move to [x][y]\n"
-"\n"
-"{mode} -   0 : Both motors\n"
-"                 1 : Base first\n"
-"                 2 : Arm first\n"
-"\n"
-"U [Position} - Up (0) or down (0)\n"
-"G - Get position"))
+        self.txtCommands.setPlainText(_translate("Dialog", "Serial Log:\n"
+""))
 
 
