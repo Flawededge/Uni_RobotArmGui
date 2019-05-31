@@ -13,7 +13,8 @@ import serial
 class MainPlotGui(Ui_Dialog):
     # The class variables which are used to pass things around
     workingImage = None  # Stores the image shown in the top left
-    dataSend = serial.Serial('com4', 115200)
+    dataSend = serial.Serial('com8', 115200)
+    curX, curY = 0, 0
 
     def __init__(self, dialog):  # Initialization function
         # Set up the GUI
@@ -24,9 +25,8 @@ class MainPlotGui(Ui_Dialog):
         self.clear_image()
         self.disp_image(self.workingImage)
 
-        self.bQ.clicked.connect(self.make_line)
+        self.bGo.clicked.connect(self.run_calculations)
         self.bE.clicked.connect(self.serialTransmit)
-
 
     def serialTransmit(self, input):
         t = 0
@@ -43,7 +43,38 @@ class MainPlotGui(Ui_Dialog):
                 print(t)
         self.txtCommands.appendPlainText(f"Received: {read}")
 
-    def make_line(self):
+    def run_calculations(self):
+        error = False
+        for cnt, i in enumerate(self.txtInput.toPlainText().split("\n")):  # Split the input text into discreet lines
+            print(f"Processing: {i}")
+
+            # Error check and distribute functions
+            if i[0] == 'z':
+                self.serialTransmit('z')
+            elif i[0] == 'u':
+                if i[2] == '0':
+                    self.serialTransmit("u 0")
+                elif i[2] == '1':
+                    self.serialTransmit("u 1")
+                else:
+                    error = True
+
+            elif i[0] == 't':
+                tmp = i.split(" ")
+                # self.calculate_angle(self.curX + i.split(" ")[1], self.curY + i.split(" ")[2])
+                self.serialTransmit(f"t {tmp[1]} {tmp[2]}")
+
+            elif i[0] == 'a':
+                print("A not implemented")
+
+            else:
+                error = True
+
+            if error:
+                print(f"Error on line {cnt}")
+                return
+
+    def calculate_angle(self, x, y):
         cv2.line(self.workingImage, (0, 0), (75, 75), (255, 0, 0), 2)
         self.disp_image(self.workingImage)
 
